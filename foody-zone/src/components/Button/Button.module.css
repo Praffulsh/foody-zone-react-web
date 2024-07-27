@@ -1,8 +1,12 @@
-button{
-    background-color: #FF4343;
-    color: #fff;
-    border-radius: 5px;
-    padding: 6px 12px;
-    cursor: pointer;
-    border: none;
+button {
+  background-color: #ff4343;
+  color: #fff;
+  border-radius: 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: none;
+}
+.selected {
+  background-color: #c91313;
+  outline: 1px solid #fff;
 }

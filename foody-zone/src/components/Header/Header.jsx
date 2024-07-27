@@ -2,7 +2,8 @@ import Button from "../Button/Button";
 import styles from "./Header.module.css";
 
 const Header = (props) => {
-  let { searchFood, filterFood } = { ...props }
+  let { searchFood, filterFood, selectedFilteredButton } = { ...props };
+
   return (
     <div className={styles.container}>
       <div className={styles.topSection}>
@@ -11,7 +12,7 @@ const Header = (props) => {
         </div>
         <div className={styles.searchBox}>
           <input
-            type="text"
+            type="search"
             name=""
             id=""
             placeholder="Search Food..."
@@ -20,10 +21,26 @@ const Header = (props) => {
         </div>
       </div>
       <div className={styles.filterContainer}>
-        <Button text="All" filterFood={filterFood} />
-        <Button text="Breakfast" filterFood={filterFood} />
-        <Button text="Lunch" filterFood={filterFood} />
-        <Button text="Dinner" filterFood={filterFood} />
+        <Button
+          text="All"
+          filterFood={filterFood}
+          selectedFilteredButton={selectedFilteredButton}
+        />
+        <Button
+          text="Breakfast"
+          filterFood={filterFood}
+          selectedFilteredButton={selectedFilteredButton}
+        />
+        <Button
+          text="Lunch"
+          filterFood={filterFood}
+          selectedFilteredButton={selectedFilteredButton}
+        />
+        <Button
+          text="Dinner"
+          filterFood={filterFood}
+          selectedFilteredButton={selectedFilteredButton}
+        />
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ function App() {
   const [filtereddata, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
+  const [selectedFilteredButton, setSelectedFilteredButton] = useState("All");
 
   // ************* Search Function *****************
   const searchFood = (event) => {
@@ -24,11 +25,13 @@ function App() {
     const searchData = data?.filter((currentValue) => {
       return currentValue.name.toLowerCase().includes(searchValue);
     });
+
     setFilteredData(searchData);
   };
 
   // ************* Filter Function *****************
   const filterFood = (type) => {
+    setSelectedFilteredButton(type);
     if (type == "All") {
       setFilteredData(data);
       return;
@@ -67,25 +70,31 @@ function App() {
   }
   return (
     <>
-      <Header searchFood={searchFood} filterFood={filterFood} />
+      <Header
+        searchFood={searchFood}
+        filterFood={filterFood}
+        selectedFilteredButton={selectedFilteredButton}
+      />
       <div className="foodContainer">
         <div className="container">
-          {filtereddata.map((value, index) => {
-            return (
-              <div key={index} className="foodCard">
-                <div className="foodImage">
-                  <img src={BASE_URL + value.image} alt={value.name} />
-                </div>
-                <div className="foodDescription">
-                  <div>
-                    <h3>{value.name}</h3>
-                    <p>{value.text}</p>
+          {filtereddata.length === 0
+            ? "No Record Found"
+            : filtereddata.map((value, index) => {
+                return (
+                  <div key={index} className="foodCard">
+                    <div className="foodImage">
+                      <img src={BASE_URL + value.image} alt={value.name} />
+                    </div>
+                    <div className="foodDescription">
+                      <div>
+                        <h3>{value.name}</h3>
+                        <p>{value.text}</p>
+                      </div>
+                      <Button text={`$${value.price.toFixed(2)}`} />
+                    </div>
                   </div>
-                  <Button text={`$${value.price.toFixed(2)}`} />
-                </div>
-              </div>
-            );
-          })}
+                );
+              })}
         </div>
       </div>
     </>
