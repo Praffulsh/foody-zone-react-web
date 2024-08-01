@@ -32,3 +32,6 @@
   padding-bottom: 40px;
 }
 
+.searchBox input::placeholder{
+  color: #fff;
+}
